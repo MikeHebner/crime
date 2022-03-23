@@ -29,7 +29,7 @@ function display_recent(data){
         offense.appendChild(node2);
         let offense_code = row.insertCell(3);
         let node3 = document.createTextNode(value['OFFENSE_CODE'])
-        offense.appendChild(node3);
+        offense_code.appendChild(node3);
         let district = row.insertCell(4);
         let node4 = document.createTextNode(value['DISTRICT'])
         district.appendChild(node4);
@@ -37,7 +37,7 @@ function display_recent(data){
         let node5 = document.createTextNode(value['STREET'])
         street.appendChild(node5);
         let loc = row.insertCell(6);
-        let node6 = document.createTextNode(value['LOCATION'])
+        let node6 = document.createTextNode(value['Location'])
         loc.appendChild(node6);
     }
     
