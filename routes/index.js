@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 
+
+
 const Client = require('pg').Client;
 
 const client = new Client({
@@ -20,11 +22,13 @@ router.get('/dataView', function(req, res, next) {
 });
 
 router.get('/dataViewOut', function(req, res, next) {
-  client.query('SELECT * FROM crime_boston', function(err, result){
+  client.query("SELECT district, COUNT(*) as count FROM crime_boston GROUP BY district ORDER BY count DESC;", function(err, result){
     if (err) {next(err);}
     res.json(result.rows);
     console.log(result.rows);
   });
 });
+
+
 
 module.exports = router;
