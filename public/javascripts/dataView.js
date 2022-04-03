@@ -1,3 +1,4 @@
+
 let xhttp = new XMLHttpRequest();
 
 xhttp.addEventListener("load",success);
@@ -11,38 +12,30 @@ https://en.wikipedia.org/wiki/Map_(higher-order_function)
 */
 function success(){
   let data = JSON.parse(xhttp.response);
-
   let rows = data.map((row) =>
-    <tr key={JSON.stringify(row)}>
-        <td> { row.district } </td>
-        <td> { row.count } </td>
-    </tr>
-  );
-  console.log(rows);
-  let element =(
-    <div>
-      <h2>Crime Database</h2>
-        <table id="myTable">
-        <thead>
-          <tr><th>District</th><th>Crime Count</th></tr>
-        
-        </thead>
-        <tbody>
-            {rows}
-        </tbody>
-        </table>
-    </div>
+  <tr key={JSON.stringify(row)}>
+      <td> { row.district }</td>
+      <td> { row.count }</td>
+  </tr>
+);
+console.log(rows);
+let element =(
+  <div>
+    <h2>Crime Database</h2>
+      <table id="myTable">
+      <thead>
+      <tr><th>District</th><th>Crime Count</th></tr>
+      </thead>
+      <tbody>
+          {rows}
+      </tbody>
+      </table>
+  </div>
+);
+  ReactDOM.render(
+    element, document.getElementById('dataView')
   );
 
-  ReactDOM.render(
-    element,
-    document.getElementById('dataView')
-  );
-  /*
-   datatable CSS
-   https://datatables.net/
-   https://github.com/fiduswriter/Simple-DataTables
-  */
   const dataTable = new simpleDatatables.DataTable("#myTable");
 
 }
