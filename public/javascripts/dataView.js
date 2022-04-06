@@ -17,27 +17,26 @@ function success(){
       <td> { row.district }</td>
       <td> { row.count }</td>
   </tr>
-);
-console.log(rows);
-let element =(
-  <div>
-    <h2>Crime Database</h2>
-      <table id="myTable">
-      <thead>
-      <tr><th>District</th><th>Crime Count</th></tr>
-      </thead>
-      <tbody>
-          {rows}
-      </tbody>
-      </table>
-  </div>
-);
-  ReactDOM.render(
-    element, document.getElementById('dataView')
   );
+  console.log(rows);
+  let element =(
+    <div>
+      <h2>Crime Database</h2>
+        <table id="myTable">
+        <thead>
+        <tr><th>District</th><th>Crime Count</th></tr>
+        </thead>
+        <tbody>
+            {rows}
+        </tbody>
+        </table>
+    </div>
+    );
+    ReactDOM.render(
+      element, document.getElementById('dataView')
+    );
 
-  const dataTable = new simpleDatatables.DataTable("#myTable");
-
+    const dataTable = new simpleDatatables.DataTable("#myTable");
 }
 function error(){
   console.log(xhttp.readyState);

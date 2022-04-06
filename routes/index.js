@@ -29,6 +29,10 @@ router.get('/dataViewOut', function(req, res, next) {
   });
 });
 
+router.get('/barGraph', function(req, res, next) {
+  res.sendFile(path.join(__dirname,'..', 'public', 'barGraph.html'));
+});
+
 
 
 module.exports = router;
