@@ -1,0 +1,21 @@
+#map{
+    position: relative;
+    top: 20%;
+    height: 60%;
+    width: 100%;
+  }
+
+#search-button{
+  position: absolute;
+  top:5%;
+}
+.col-sm-12{
+  position: relative;
+  left: 80%;
+  }
+
+.col-sm-6{
+  position: absolute;
+  top: 28%;
+  left: 70%;
+}
