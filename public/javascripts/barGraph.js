@@ -43,7 +43,7 @@ function success(){
   });
 
   x.domain(data.map(function(d) {return d.district; }));
-  y.domain([0, d3.max(data, function(d) { return d.count; })]) // y.domain = (0, max(count))
+  y.domain([0, d3.max(data, function(d) { return d.count + 400; })]) // y.domain = (0, max(count))
   
   // Append rectangles for bar chart
   svg.selectAll(".bar")
