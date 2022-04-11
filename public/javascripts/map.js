@@ -8,6 +8,28 @@ L.tileLayer('http://tiles.mapc.org/basemap/{z}/{x}/{y}.png',
   minZoom: 9
 }).addTo(map);
 
-var districts = new L.GeoJSON.AJAX("json/Police_Districts.geojson")
+var districts = new L.GeoJSON.AJAX("json/Police_Districts.geojson",{
+
+  style:{
+    fillColor:'red',
+  },
+  onEachFeature: function (feature, layer){
+    var label = L.marker(layer.getBounds().getCenter(), {
+      icon: L.divIcon({
+        className: 'label',
+        html: feature.properties.NAME,
+        iconSize: [100, 40]
+      })
+
+    }).addTo(map);
+    
+  }
+});
+
 districts.addTo(map);
+
+
+
+
+
 

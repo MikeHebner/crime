@@ -6,7 +6,6 @@ var data = {
     url: 'https://data.boston.gov/api/3/action/datastore_search',
     data: data,
     success: function(data) {
-      alert('Total results found: ' + data.result.total)
       console.log(data.result.records)
       display_recent(data)
     }

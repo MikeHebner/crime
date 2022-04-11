@@ -29,7 +29,7 @@ function success(){
             .padding(0.1);
   var y = d3.scaleLinear()
             .range([height, 0]);
-  var svg = d3.select("body").append("svg")
+  var svg = d3.select("#graph").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
