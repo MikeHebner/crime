@@ -7,7 +7,7 @@ xhttp.send();
 
 function success(){
   let data = JSON.parse(xhttp.response);
-  console.log(data[0]["count"])
+
   
   function getColor(d){
     return  d > 7000  ? '#a50f15' :
@@ -16,8 +16,6 @@ function success(){
             d > 1500   ? '#fcae91' :
                         '#fee5d9';
   }
-
-  console.log(getColor(data[1]["count"]))
 
 
   map = L.map('map').setView([42.3601, -71.0589],12);
@@ -28,12 +26,46 @@ function success(){
     maxZoom: 17,
     minZoom: 9
   }).addTo(map);
+  var info = L.control();
+
+	info.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'info');
+		this.update();
+		return this._div;
+	};
+
+	info.update = function (props) {
+    let temp;
+    if(props!=undefined){
+      temp = props['DISTRICT'];
+    }
+    for(const elm of data){
+      if(elm['district']==temp){
+        temp = elm['count'];
+      }
+    }
+		this._div.innerHTML = '<h4>District Crime</h4>' +  (props ?
+			'<b>' + props.NAME + '</b><br />' + temp + " Crimes" : 'Hover over a district');
+	};
+
+	info.addTo(map);
+
+  function highlightFeature(e) {
+		var layer = e.target;
+		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+			layer.bringToFront();
+		}
+
+		info.update(layer.feature.properties);
+	}
+  function resetHighlight(e) {
+		info.update();
+	}
+
   let counter  = 0;
   var districts = new L.GeoJSON.AJAX("json/Police_Districts.geojson",{
     
-    style:{
-      fillColor:getColor(data[0]["count"]),
-    },
+    
     onEachFeature: function (feature, layer){
       var label = L.marker(layer.getBounds().getCenter(), {
         icon: L.divIcon({
@@ -48,12 +80,15 @@ function success(){
         fillOpacity:.75
       });
       counter = counter + 1;
-      console.log(label)
+      layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight
+      });
       
     }
   });
   
-  districts.addTo(map);
+  districts.addTo(map); 
 }
 function error(){
   console.log(xhttp.readyState);
