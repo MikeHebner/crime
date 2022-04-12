@@ -29,6 +29,14 @@ router.get('/dataViewOut', function(req, res, next) {
   });
 });
 
+router.get('/mapViewOut', function(req, res, next) {
+  client.query("SELECT district, COUNT(*) as count FROM crime_boston GROUP BY district ORDER BY district;", function(err, result){
+    if (err) {next(err);}
+    res.json(result.rows);
+    console.log(result.rows);
+  });
+});
+
 router.get('/barGraph', function(req, res, next) {
   res.sendFile(path.join(__dirname,'..', 'public', 'barGraph.html'));
 });

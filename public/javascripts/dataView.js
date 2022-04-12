@@ -21,7 +21,7 @@ function success(){
   console.log(rows);
   let element =(
     <div>
-      <h2>Crime Database</h2>
+      <h2>Total Crimes per District</h2>
         <table id="myTable">
         <thead>
         <tr><th>District</th><th>Crime Count</th></tr>
