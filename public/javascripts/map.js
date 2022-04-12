@@ -10,13 +10,13 @@ function success(){
 
   
   function getColor(d){
-    return  d > 7500  ? '#99000d' :
-            d > 6500  ? '#cb181d' :
-            d > 5400  ? '#ef3b2c' :
-            d > 4300  ? '#fb6a4a' :
-            d > 3200  ? '#fc9272' :
-            d > 2100  ? '#fcbba1' :
-            d > 1000  ? '#fee0d2' :
+    return  d > 85000  ? '#99000d' :
+            d > 65000  ? '#cb181d' :
+            d > 54000  ? '#ef3b2c' :
+            d > 43000  ? '#fb6a4a' :
+            d > 32000  ? '#fc9272' :
+            d > 21000  ? '#fcbba1' :
+            d > 10000  ? '#fee0d2' :
                         '#fff5f0';
   }
 
