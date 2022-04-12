@@ -65,6 +65,10 @@ function success(){
 		info.update();
 	}
 
+  function districtClick(e) {
+    console.log(e['target']['feature']['properties']['ID'])
+  }
+
   let counter  = 0;
   var districts = new L.GeoJSON.AJAX("json/Police_Districts.geojson",{
     
@@ -85,7 +89,8 @@ function success(){
       counter = counter + 1;
       layer.on({
         mouseover: highlightFeature,
-        mouseout: resetHighlight
+        mouseout: resetHighlight,
+        click: districtClick
       });
       
     }
