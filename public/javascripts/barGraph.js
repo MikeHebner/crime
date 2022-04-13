@@ -8,13 +8,21 @@ xhttp.open("GET", "/dataViewout", true);
 xhttp.send();
 
 function success(){
+  let districts = {
+    "A1" : "Downtown",
+    "A15" : "Charlestown",
+    "A7" : "East Boston",
+    "B2" : "Roxbury",
+    "B3" : "Mattapan",
+    "C11" : "Dorchester",
+    "C6" : "South Boston",
+    "D14" : "Brighton",
+    "D4" : "South End",
+    "E13" : "Jamaica Plain",
+    "E18" : "Hyde Park",
+    "E5" : "West Roxbury",
+  }
   let data = JSON.parse(xhttp.response);
-  var mapped = data.map(d => {
-    return {
-      district: Object.keys(d)[0],
-      count: d[Object.keys(d)[0]]
-    }
-  });
 
   // Set graph margins and dimensions
   var margin = {top: 40, right: 40, bottom: 90, left: 90},
@@ -59,7 +67,7 @@ function success(){
       .attr("width", x.bandwidth())
       .attr("y", function(d) { return y(d.count); })
       .attr("height", function(d) { return height - y(d.count); });
- 
+
   // Add x axis
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
