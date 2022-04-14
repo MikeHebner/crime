@@ -8,16 +8,24 @@ xhttp.open("GET", "/dataViewout", true);
 xhttp.send();
 
 function success(){
+  let districts = {
+    "A1" : "Downtown",
+    "A15" : "Charlestown",
+    "A7" : "East Boston",
+    "B2" : "Roxbury",
+    "B3" : "Mattapan",
+    "C11" : "Dorchester",
+    "C6" : "South Boston",
+    "D14" : "Brighton",
+    "D4" : "South End",
+    "E13" : "Jamaica Plain",
+    "E18" : "Hyde Park",
+    "E5" : "West Roxbury",
+  }
   let data = JSON.parse(xhttp.response);
-  var mapped = data.map(d => {
-    return {
-      district: Object.keys(d)[0],
-      count: d[Object.keys(d)[0]]
-    }
-  });
 
   // Set graph margins and dimensions
-  var margin = {top: 20, right: 20, bottom: 30, left: 40},
+  var margin = {top: 40, right: 40, bottom: 90, left: 90},
       width = 850 - margin.left - margin.right,
       height = 500 - margin.top - margin.bottom;
 
@@ -30,9 +38,16 @@ function success(){
   var svg = d3.select("#graph").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
-    .append("g")
+      .append("g")
       .attr("transform", 
             "translate(" + margin.left + "," + margin.top + ")");
+  
+  svg.append("text")
+  .attr("transform", "translate(100,0)")
+  .attr("x", 50)
+  .attr("y", 10)
+  .attr("font-size", "24px")
+  .text("Total Crimes by Police District ~ 2015-2021")
 
   // Format data
   data.forEach(function(d) {
@@ -46,21 +61,37 @@ function success(){
   // Append rectangles for bar chart
   svg.selectAll(".bar")
       .data(data)
-  .enter().append("rect")
-    .attr("class", "bar")
-    .attr("x", function(d) { return x(d.district); })
-    .attr("width", x.bandwidth())
-    .attr("y", function(d) { return y(d.count); })
-    .attr("height", function(d) { return height - y(d.count); });
- 
+      .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.district); })
+      .attr("width", x.bandwidth())
+      .attr("y", function(d) { return y(d.count); })
+      .attr("height", function(d) { return height - y(d.count); });
+
   // Add x axis
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x));
+    .call(d3.axisBottom(x))
+    .append("text")
+    .attr("y", 35)
+    .attr("x", 400)
+    .attr("text-anchor", "end")
+
+    .attr("fill", "black")
+    .attr("font-size", "18px")
+    .text("District")
 
   // Add y axis
   svg.append("g")
-    .call(d3.axisLeft(y));
+    .call(d3.axisLeft(y))
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -50)
+    .attr("x", -150)
+    .attr("text-anchor", "middle")
+    .attr("fill", "black")
+    .attr("font-size", "18px")
+    .text("Total Crimes");
 }
 function error(){
   console.log(xhttp.readyState);

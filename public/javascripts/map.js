@@ -10,18 +10,18 @@ function success(){
 
   
   function getColor(d){
-    return  d > 7500  ? '#99000d' :
-            d > 6500  ? '#cb181d' :
-            d > 5400  ? '#ef3b2c' :
-            d > 4300  ? '#fb6a4a' :
-            d > 3200  ? '#fc9272' :
-            d > 2100  ? '#fcbba1' :
-            d > 1000  ? '#fee0d2' :
+    return  d > 85000  ? '#99000d' :
+            d > 65000  ? '#cb181d' :
+            d > 54000  ? '#ef3b2c' :
+            d > 43000  ? '#fb6a4a' :
+            d > 32000  ? '#fc9272' :
+            d > 21000  ? '#fcbba1' :
+            d > 10000  ? '#fee0d2' :
                         '#fff5f0';
   }
 
 
-  map = L.map('map').setView([42.3601, -71.0589],12);
+  map = L.map('map').setView([42.3189, -71.0911],12);
       // load a tile layer
   L.tileLayer('http://tiles.mapc.org/basemap/{z}/{x}/{y}.png',
   {
@@ -65,6 +65,10 @@ function success(){
 		info.update();
 	}
 
+  function districtClick(e) {
+    console.log(e['target']['feature']['properties']['ID'])
+  }
+
   let counter  = 0;
   var districts = new L.GeoJSON.AJAX("json/Police_Districts.geojson",{
     
@@ -85,7 +89,8 @@ function success(){
       counter = counter + 1;
       layer.on({
         mouseover: highlightFeature,
-        mouseout: resetHighlight
+        mouseout: resetHighlight,
+        click: districtClick
       });
       
     }
