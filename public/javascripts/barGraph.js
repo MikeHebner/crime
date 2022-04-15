@@ -57,21 +57,26 @@ function success(){
 
   x.domain(data.map(function(d) {return d.district; }));
   y.domain([0, d3.max(data, function(d) { return d.count + 400; })]) // y.domain = (0, max(count))
-  
+
   // Append rectangles for bar chart
-  svg.selectAll(".bar")
+  let bars = svg.selectAll(".bar")
       .data(data)
-      .enter().append("rect")
+      .enter().append("g");
+
+  bars.append('rect')
       .attr("class", "bar")
       .attr("x", function(d) { return x(d.district); })
-      .attr("width", x.bandwidth())
       .attr("y", function(d) { return y(d.count); })
+      .attr("width", x.bandwidth())
       .attr("height", function(d) { return height - y(d.count); });
+
+  let xAxis = d3.axisBottom(x);
+
 
   // Add x axis
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x))
+    .call(xAxis)
     .append("text")
     .attr("y", 35)
     .attr("x", 400)
@@ -92,6 +97,30 @@ function success(){
     .attr("fill", "black")
     .attr("font-size", "18px")
     .text("Total Crimes");
+
+  bars.append("text")
+      .text(function(d){
+        return d.count;
+      })
+      .attr("x", function(d){
+        console.log(districts[d.district])
+        return x(d.district) + x.bandwidth()/2;
+
+      })
+      .attr("y", function(d){
+        return y(d.count) - 5;
+      })
+      .attr("font-family" , "sans-serif")
+      .attr("font-size" , "14px")
+      .attr("fill" , "black")
+      .attr("text-anchor", "middle");
+
+  var xxAxis = d3.svg.axis()
+      .scale(x)
+      .orient("bottom")
+      .tickFormat(function (d){
+        return districts[d.district];
+        });
 }
 function error(){
   console.log(xhttp.readyState);
