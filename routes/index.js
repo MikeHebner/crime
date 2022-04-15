@@ -41,6 +41,14 @@ router.get('/barGraph', function(req, res, next) {
   res.sendFile(path.join(__dirname,'..', 'public', 'barGraph.html'));
 });
 
+router.get('/crimeTypeByDistrictCount', function(req, res, next) {
+  client.query("Select count(*) as count, offense_code_group, district FROM crime_boston GROUP BY offense_code_group,district;", function(err, result){
+    if (err) {next(err);}
+    res.json(result.rows);
+    console.log(result.rows);
+  });
+});
+
 
 
 module.exports = router;
