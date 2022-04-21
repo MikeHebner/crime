@@ -6,9 +6,20 @@ var path = require('path');
 
 const Client = require('pg').Client;
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL
-});
+const client = (() => {
+  if (process.env.NODE_ENV !== 'production') {
+    return new Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: false
+    });
+  } else {
+    return new Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false
+      }
+    });
+  } })();
 
 client.connect();
 
