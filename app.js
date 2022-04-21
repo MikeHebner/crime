@@ -12,6 +12,24 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+const Client = require('pg').Client;
+const client = (() => {
+    if (process.env.NODE_ENV !== 'production') {
+        return new Client({
+            connectionString: process.env.DATABASE_URL,
+            ssl: false
+        });
+    } else {
+        return new Client({
+            connectionString: process.env.DATABASE_URL,
+            ssl: {
+                rejectUnauthorized: false
+            }
+        });
+    } })();
+
+client.connect(); //connect to database
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
