@@ -17,6 +17,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/index', function(req, res, next) {
+  res.sendFile(path.join(__dirname,'..', 'public', 'index.html'));
+});
+
 router.get('/dataView', function(req, res, next) {
   res.sendFile(path.join(__dirname,'..', 'public', 'dataView.html'));
 });

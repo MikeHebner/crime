@@ -21,7 +21,7 @@ function success(){
   }
 
 
-  map = L.map('map').setView([42.3189, -71.0911],12);
+  map = L.map('map').setView([42.3189, -71.0911],11);
       // load a tile layer
   L.tileLayer('http://tiles.mapc.org/basemap/{z}/{x}/{y}.png',
   {

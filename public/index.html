@@ -19,43 +19,26 @@
 <body>
   
   <div class="container">
+    <div class="skyline"><img class="head" src="Pictures/bostonskyline.jpg"></div>
+    
+    <img src="Pictures/bostonbackground.jpg">
     <div class="row Header">
         <div class="col-sm-10">
           <h1>Boston Crime Tracker</h1>
-          <ul><b>Crime By District</b>
-            <li><a href="dataView.html">Table</a></li>
-            <li><a href="barGraph.html">Graph</a></li>
-            <li><a href="districtData.html">District Data</a></li>
-          </ul>
         </div>
         
         <div class="col-sm-2">
           <p>LOGO</p>
         </div>
-    </div>
-    <div class="search-button">
-      <form>
-        <input type="text" id="District" placeholder="District Search">
-        <input type="button" id="Search" value="Search">
-      </form>
+      </div>
+      <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="dataView.html">Table</a>
+        <a href="barGraph.html">Graph</a>
+        <a href="districtData.html">District Data</a>
+      </div>
     </div>
     <div id="map"></div>
-    <table class="scroll">
-      <thead>
-        <tr>
-          <th>INCIDENT NUMBER</th>
-          <th>DATE</th>
-          <th>OFFENSE</th>
-          <th>OFFENSE CODE</th>
-          <th>DISTRICT</th>
-          <th>STREET</th>
-          <th>LOCATION</th>
-        </tr>
-      </thead>
-      <tbody id="tablebody">
-        
-      </tbody>
-    </table>
 </div>
 
 
