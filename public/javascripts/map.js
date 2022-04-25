@@ -96,7 +96,22 @@ function success(){
     }
   });
   
-  districts.addTo(map); 
+  districts.addTo(map);
+  let legend = L.control({position: 'bottomleft'});
+    legend.onAdd = function(map) {
+        var div = L.DomUtil.create("div", "legend");
+        div.innerHTML += "<h4>Incidents 2015-21</h4>";
+        div.innerHTML += '<i style="background: #99000d"></i><span>> 85,000</span><br>';
+        div.innerHTML += '<i style="background: #cb181d"></i><span>< 85,000</span><br>';
+        div.innerHTML += '<i style="background: #ef3b2c"></i><span>< 65,000</span><br>';
+        div.innerHTML += '<i style="background: #fb6a4a"></i><span>< 54,000</span><br>';
+        div.innerHTML += '<i style="background: #fc9272"></i><span>< 43,000</span><br>';
+        div.innerHTML += '<i style="background: #fcbba1"></i><span>< 32,000</span><br>';
+        div.innerHTML += '<i style="background: #fee0d2"></i><span>< 21,000</span><br>';
+        div.innerHTML += '<i style="background: #fff5f0"></i><span>< 10,000</span><br>';
+        return div;
+    };
+    legend.addTo(map);
 }
 function error(){
   console.log(xhttp.readyState);

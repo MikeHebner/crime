@@ -6,9 +6,20 @@ var path = require('path');
 
 const Client = require('pg').Client;
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL
-});
+const client = (() => {
+  if (process.env.NODE_ENV !== 'production') {
+    return new Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: false
+    });
+  } else {
+    return new Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false
+      }
+    });
+  } })();
 
 client.connect();
 
@@ -51,6 +62,10 @@ router.get('/crimeTypeByDistrictCount', function(req, res, next) {
     res.json(result.rows);
     console.log(result.rows);
   });
+});
+
+router.get('/currentCrime', function(req, res, next) {
+  res.sendFile(path.join(__dirname,'..', 'public', 'currentCrime.html'));
 });
 
 
