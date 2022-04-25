@@ -60,6 +60,10 @@ router.get('/crimeTypeByDistrictCount', function(req, res, next) {
   });
 });
 
+router.get('/currentCrime', function(req, res, next) {
+  res.sendFile(path.join(__dirname,'..', 'public', 'currentCrime.html'));
+});
+
 
 
 module.exports = router;

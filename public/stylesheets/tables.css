@@ -1,0 +1,5 @@
+
+table, th, td {
+    border: 2px solid;
+}
+tr:hover {background-color: #D6EEEE;}
