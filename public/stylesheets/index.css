@@ -42,30 +42,6 @@ div.skyline{
   z-index: 1;
 }
 
-
-
-  .navbar{
-    overflow: hidden;
-    background-color: #333;
-  }
-
-  .navbar a{
-    float: left;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 6px 8px;
-    text-decoration: none;
-  }
-
-  div.navbar{
-    position: absolute;
-    top: 25%;
-    width: 100%;
-    left: 0%;
-    z-index: 1;
-  }
-
   div.row Header{
     top: 20%;
   }

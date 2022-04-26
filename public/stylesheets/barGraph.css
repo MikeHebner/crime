@@ -30,25 +30,3 @@ div.skyline{
     object-fit: cover;
     z-index: 0;
   }
-
-.navbar{
-    overflow: hidden;
-    background-color: #333;
-  }
-
-  .navbar a{
-    float: left;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-
-  div.navbar{
-    position: absolute;
-    top: 25%;
-    width: 100%;
-    left: 0%;
-    z-index: 1;
-  }

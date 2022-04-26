@@ -64,6 +64,14 @@ router.get('/crimeTypeByDistrictCount', function(req, res, next) {
   });
 });
 
+router.get('/shootingsByDistrictCount', function(req, res, next) {
+  client.query("SELECT district, COUNT(*) as count FROM crime_boston WHERE shooting IS NOT NULL GROUP BY district  ORDER BY count desc;", function(err, result){
+    if (err) {next(err);}
+    res.json(result.rows);
+    console.log(result.rows);
+  });
+});
+
 router.get('/currentCrime', function(req, res, next) {
   res.sendFile(path.join(__dirname,'..', 'public', 'currentCrime.html'));
 });
