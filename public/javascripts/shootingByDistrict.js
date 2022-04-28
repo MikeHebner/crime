@@ -21,7 +21,30 @@ function success() {
         "E5": "West Roxbury",
     }
     let data = JSON.parse(xhttp1.response);
-    console.log(data)
+    let rows = data.map((row) =>
+        <tr key={JSON.stringify(row)}>
+            <td> { districts[row.district] }</td>
+            <td> { row.count}</td>
+        </tr>
+    );
+    let element =(
+        <div>
+            <h2>Shooting Involved Incident Totals</h2>
+            <table id="myTable">
+                <thead>
+                <tr><th>District</th><th>Count</th></tr>
+                </thead>
+                <tbody>
+                {rows}
+                </tbody>
+            </table>
+        </div>
+    );
+    ReactDOM.render(
+        element, document.getElementById('dataView')
+    );
+
+    const dataTable = new simpleDatatables.DataTable("#myTable");
     
 
 }

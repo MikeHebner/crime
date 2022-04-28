@@ -19,7 +19,7 @@
 
 <body>
   
-  <div class="container">
+  <div id="background" class="container">
     <div class="skyline"><img class="head" src="Pictures/bostonskyline.jpg"></div>
 
     <img src="Pictures/bostonbackground.jpg">
@@ -31,26 +31,27 @@
         <div class="col-sm-2">
           <p>LOGO</p>
         </div>
-      </div>
+    </div>
+  </div>
+  <div>
       <div class="navbar">
         <a href="index.html">Home</a>
         <div class="dropdown">
-          <button class="dropbtn">Table
-            <i class="fa fa-caret-down"></i>
-          </button>
+          <button class="dropbtn">Table</button>
           <div class="dropdown-content">
             <a href="dataView.html">District</a>
             <a href="districtData.html">Crime type</a>
           </div>
+
         </div>
-        <a href="barGraph.html">Graph</a>
-        <a href="districtData.html">District Data</a>
+        <a href="barGraph.html">Graph-Crime/District</a>
+        <a href="districtData.html">TB-Crime Type/District Data</a>
+        <a href="shootingData.html">TB-Shooting/District</a>
       </div>
-    </div>
+  </div>
     <div id="map"></div>
-</div>
+
 </body>
 <script src="javascripts/map.js"></script>
-<script src="javascripts/shootingByDistrict.js"></script>
 
 </html>
