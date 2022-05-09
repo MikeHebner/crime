@@ -3,6 +3,18 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.col-sm-10{
+  z-index: 1;
+  }
+
+div.row Header{
+  top: 20%;
+  }
+
+.col-sm-2{
+  z-index: 1;
+}
+
 a {
   color: #00B7FF;
 }
