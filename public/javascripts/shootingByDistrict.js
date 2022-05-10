@@ -30,6 +30,7 @@ function success() {
     let element =(
         <div>
             <h2>Shooting Involved Incident Totals</h2>
+            <h3>2015-2018</h3>
             <table id="myTable">
                 <thead>
                 <tr><th>District</th><th>Count</th></tr>
